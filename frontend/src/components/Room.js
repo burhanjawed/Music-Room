@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Button, Typography } from '@mui/material';
 import CreateRoomPage from './CreateRoomPage';
+import MusicPlayer from './MusicPlayer';
 
 const Room = (props) => {
   const [votesToSkip, setVotesToSkip] = useState(2);
@@ -142,9 +143,7 @@ const Room = (props) => {
             </Typography>
           </Grid>
           <Grid item xs={12} align='center'>
-            <h1>Artist: {song.artist}</h1>
-            <br />
-            <h1>Song: {song.title}</h1>
+            <MusicPlayer {...song} />
           </Grid>
           {isHost && renderSettingsButton()}
           <Grid item xs={12} align='center'>
