@@ -19,7 +19,7 @@ const Room = (props) => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
+  const getRoomDetails = () => {
     fetch('/api/get-room' + '?code=' + roomCode)
       .then((response) => {
         if (!response.ok) {
@@ -37,7 +37,9 @@ const Room = (props) => {
           authenticateSpotify();
         }
       });
-  }, []);
+  };
+
+  getRoomDetails();
 
   const authenticateSpotify = () => {
     try {
@@ -133,30 +135,32 @@ const Room = (props) => {
 
   return (
     <>
-      {showSettings ? (
-        renderSettings()
-      ) : (
-        <Grid container spacing={1}>
-          <Grid item xs={12} align='center'>
-            <Typography variant='h4' component='h4'>
-              Code: {roomCode}
-            </Typography>
+      <div className='wrapper'>
+        {showSettings ? (
+          renderSettings()
+        ) : (
+          <Grid container spacing={1}>
+            <Grid item xs={12} align='center'>
+              <Typography variant='h4' component='h4'>
+                Code: {roomCode}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} align='center'>
+              <MusicPlayer {...song} />
+            </Grid>
+            {isHost && renderSettingsButton()}
+            <Grid item xs={12} align='center'>
+              <Button
+                color='secondary'
+                variant='contained'
+                onClick={leaveButtonPressed}
+              >
+                Leave Room
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12} align='center'>
-            <MusicPlayer {...song} />
-          </Grid>
-          {isHost && renderSettingsButton()}
-          <Grid item xs={12} align='center'>
-            <Button
-              color='secondary'
-              variant='contained'
-              onClick={leaveButtonPressed}
-            >
-              Leave Room
-            </Button>
-          </Grid>
-        </Grid>
-      )}
+        )}
+      </div>
     </>
   );
 };

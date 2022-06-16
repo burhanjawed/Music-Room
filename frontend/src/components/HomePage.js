@@ -22,23 +22,25 @@ const HomePage = (props) => {
 
   const renderHomePage = () => {
     return (
-      <Grid container spacing={3}>
-        <Grid item xs={12} align='center'>
-          <Typography variant='h3' component='h3'>
-            Music Room
-          </Typography>
+      <div className='home__wrapper'>
+        <Grid container spacing={3}>
+          <Grid item xs={12} align='center'>
+            <Typography variant='h3' component='h3'>
+              Music Room
+            </Typography>
+          </Grid>
+          <Grid item xs={12} align='center'>
+            <ButtonGroup disableElevation variant='contained' color='primary'>
+              <Link to='/join'>
+                <Button color='primary'>Join a Room</Button>
+              </Link>
+              <Link to='/create'>
+                <Button color='secondary'>Create a Room</Button>
+              </Link>
+            </ButtonGroup>
+          </Grid>
         </Grid>
-        <Grid item xs={12} align='center'>
-          <ButtonGroup disableElevation variant='contained' color='primary'>
-            <Link to='/join'>
-              <Button color='primary'>Join a Room</Button>
-            </Link>
-            <Link to='/create'>
-              <Button color='secondary'>Create a Room</Button>
-            </Link>
-          </ButtonGroup>
-        </Grid>
-      </Grid>
+      </div>
     );
   };
 
